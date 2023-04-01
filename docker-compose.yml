@@ -1,0 +1,31 @@
+services:
+  rate-limiter:
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - redis
+    volumes:
+      - .:/usr/src/app
+    restart: on-failure
+    env_file:
+      - .env
+    networks:
+      - internal-network
+
+  redis:
+    image: redis:7.0-alpine
+    volumes:
+      - redis-config:/usr/local/etc/redis
+      - redis-data:/data
+    networks:
+      - internal-network
+    environment:
+      - REDIS_PASSWORD=password
+
+networks:
+  internal-network:
+
+volumes:
+  redis-config:
+  redis-data:
