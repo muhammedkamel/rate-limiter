@@ -14,12 +14,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Use Docker Compose
-        uses: docker/compose-action@v2
-        with:
-          compose-file: docker-compose.yml
+        run: docker-compose up -d
 
-      - name: Run Jest tests
+      - name: Run ESLint
         run: docker-compose run --rm app npm run lint
