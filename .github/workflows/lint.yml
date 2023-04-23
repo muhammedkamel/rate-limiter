@@ -19,5 +19,11 @@ jobs:
       - name: Use Docker Compose
         run: docker-compose up -d
 
+  lint:
+    runs-on: ubuntu-latest
+    needs: build
+    container: app
+
+    steps:
       - name: Run ESLint
         run: docker-compose run --rm app npm run lint
