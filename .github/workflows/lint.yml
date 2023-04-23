@@ -20,4 +20,4 @@ jobs:
         run: docker-compose up -d
 
       - name: Run ESLint
-        run: docker compose run app npm lint
+        run: docker compose run app npm run lint
