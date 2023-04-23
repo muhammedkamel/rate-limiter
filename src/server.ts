@@ -1,10 +1,16 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 import express from "express";
+import { client } from "./utils/redis";
+import { rateLimiter } from "./middlewares/rate-limiter";
 
 const app = express();
 
-const port = 3000;
+if (process.env.RATE_LIMITER_ENABLED === 'true') {
+    app.use(rateLimiter.bind(this));
+}
 
-app.get('/', (req, res) => res.send('Hello world'));
+app.get('/', (req, res) => res.send(client.get('test')));
 
 // tslint:disable-next-line:no-console
-app.listen(port, () => console.log(`Application started listening http://localhost:${port}`));
+app.listen(process.env.PORT, () => console.log(`Application started listening http://localhost:${process.env.PORT}`));

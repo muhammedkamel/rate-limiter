@@ -8,8 +8,6 @@ services:
     volumes:
       - .:/usr/src/app
     restart: on-failure
-    env_file:
-      - .env
     networks:
       - internal-network
 
@@ -22,6 +20,8 @@ services:
       - internal-network
     environment:
       - REDIS_PASSWORD=password
+    ports:
+      - 6379:6379
 
 networks:
   internal-network:
