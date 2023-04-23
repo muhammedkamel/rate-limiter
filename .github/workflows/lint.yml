@@ -1,8 +1,12 @@
-name: CI/CD
+name: lint
 
 on:
   push:
     branches: [master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_head }}
+  cancel-in-progress: true
 
 jobs:
   build:
