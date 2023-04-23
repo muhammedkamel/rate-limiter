@@ -22,7 +22,7 @@ describe('rate-limiter middleware', () => {
         ]);
 
         const res = await req.get('/').set('x-forwarded-for', '172.20.0.1');
-        
+
         expect(res.status).toEqual(429);
     });
 
@@ -31,7 +31,7 @@ describe('rate-limiter middleware', () => {
 
         expect(res.status).toEqual(200);
     });
-    
+
     afterAll(async () => {
         await client.flushAll();
         await client.disconnect();
