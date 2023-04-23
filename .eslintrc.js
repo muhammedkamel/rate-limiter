@@ -5,7 +5,4 @@ module.exports = {
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
     ],
-    rules: {
-        // add any custom rules here
-    },
 };
