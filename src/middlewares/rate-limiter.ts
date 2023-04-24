@@ -10,7 +10,7 @@ export const rateLimiter = async (req: Request, res: Response, next: NextFunctio
 
     const key = `rate-limiter:${ip}`;
 
-    const current = await getCurrentWindow(key, Number(process.env.RATE_LIMITER_TIME_WINDOW));
+    const current = await getCurrentWindow(key, Number(process.env.RATE_LIMITER_TIME_WINDOW_SECONDS));
 
     if (current + 1 > Number(process.env.RATE_LIMITER_MAX_REQUESTS)) {
         return res.status(429).json({
